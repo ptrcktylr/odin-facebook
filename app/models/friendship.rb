@@ -1,7 +1,7 @@
 class Friendship < ApplicationRecord
   # - RELATIONS
   belongs_to :user
-  belonds_to :friend, class_name: "User"
+  belongs_to :friend, class_name: "User"
 
   # - VALIDATIONS
   validates_presence_of :user_id, :friend_id
