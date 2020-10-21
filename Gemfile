@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Bootstrap for css styling
 gem 'bootstrap', '~> 5.0.0.alpha1'
+gem 'jquery-rails'
 
 # Simple Form for forms
 gem 'simple_form', '~> 5.0', '>= 5.0.3'
