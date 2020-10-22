@@ -33,7 +33,7 @@ gem 'bootstrap', '~> 5.0.0.alpha1'
 gem 'jquery-rails'
 
 # Simple Form for forms
-gem 'simple_form', '~> 5.0', '>= 5.0.3'
+gem 'simple_form'
 
 # Devise for authentication
 gem 'devise', '~> 4.7', '>= 4.7.3'

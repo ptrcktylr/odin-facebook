@@ -1,1 +1,7 @@
-<%# editing name and summary %>
+<h1>Update Profile</h1>
+<%= simple_form_for @user do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :summary %>
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>
