@@ -1,3 +1,7 @@
 <% @users.each do |user| %>
-  <%= user.name %> | <br>
+  <% if current_user.friends.include?(user) || current_user == user %>
+    <%= user.name %><br>
+  <% else %>
+    <%= user.name %> | <%= link_to 'Add friend', friendships_path(:friend_id => user), method: :post %><br>
+  <% end %>
 <% end %>

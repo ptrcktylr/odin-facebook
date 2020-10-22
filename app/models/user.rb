@@ -39,4 +39,9 @@ class User < ApplicationRecord
   def pending_friends
     friends.select { |friend| !friend.friends.include?(self) }
   end
+
+  def pending_requests
+    return Friendship.where(["friend_id = ?", self.id]).select { |friendship| !friendship.mutual?}
+  end
+  
 end

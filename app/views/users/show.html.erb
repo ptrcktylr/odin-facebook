@@ -4,3 +4,15 @@
 <% else %>
   An Odinbook User
 <% end %>
+
+<br><br>
+<h5>Requests</h5>
+<% current_user.pending_requests.each do |u| %>
+<%= User.where("id = ?", u.user_id).first.name %>  | <%= link_to 'Add friend', friendships_path(:friend_id => u.user_id), method: :post %><br>
+<% end %>
+
+<br><br>
+<h5>Friends</h5>
+<% current_user.active_friends.each do |u| %>
+  <%= u.name %><br>
+<% end %>
