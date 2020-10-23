@@ -1,0 +1,21 @@
+<div class="jumbotron bg-white">
+  <h1 class="display-4 mb-4">Friend Requests</h1>
+
+  <% if current_user.pending_requests.empty? %>
+    <p class="mt-4">No pending requests</p>
+  <% else %>
+    <% current_user.pending_requests.each do |u| %>
+      <div class="card mb-2">
+        <div class="card-body">
+          <div class="card-text">
+            <%= image_tag 'odin-logo.svg', height:'40', width:'40', class:"mr-1" %>
+            <%= link_to User.where("id = ?", u.user_id).first.name, u.user, class:"text-decoration-none text-reset" %>
+            <div class="float-right">
+              <%= link_to 'Add friend', friendships_path(:friend_id => u.user_id), method: :post, class:"btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

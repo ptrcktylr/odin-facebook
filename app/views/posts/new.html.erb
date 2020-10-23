@@ -1,0 +1,12 @@
+<main role="main" class="container">
+
+<div class="jumbotron">
+	<p class="lead">Create a new Post</p>
+	<p class="lead">
+		<%= render 'form', post: @post %>
+	</p>
+
+	<%= link_to 'Cancel', posts_path, class: "btn btn-danger" %>
+</div>
+
+</main>

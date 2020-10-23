@@ -22,3 +22,17 @@ body {
 ul, ol, dl {
   margin-bottom: 0;
 }
+
+abbr[title] {
+  // removes underline and asterisk on form
+  text-decoration: none !important;
+}
+
+.card-text {
+  margin-bottom: 1rem;
+}
+
+.round-avatar {
+  background-color: white;
+  border-radius: 10%;
+}

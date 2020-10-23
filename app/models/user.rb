@@ -43,5 +43,8 @@ class User < ApplicationRecord
   def pending_requests
     return Friendship.where(["friend_id = ?", self.id]).select { |friendship| !friendship.mutual?}
   end
+
+  # - POSTS
+  has_many :posts, class_name: "Post", foreign_key: "author_id", dependent: :destroy
   
 end

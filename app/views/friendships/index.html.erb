@@ -1,0 +1,21 @@
+<div class="jumbotron bg-white">
+  <h1 class="display-6 mb-4">
+  <% if @user == current_user %>
+    Your Friends
+  <% else %>
+    <%= @user.name %>'s Friends
+  <% end %>
+  </h1>
+
+  <% @friendships.each do |friendship| %>
+    <div class="card mb-2">
+      <div class="card-body">
+        <div class="card-text">
+          <%= image_tag 'odin-logo.svg', height:'40', width:'40', class:"mr-1" %>
+          <%= link_to friendship.friend.name, friendship.friend, class:"text-decoration-none text-reset" %>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>

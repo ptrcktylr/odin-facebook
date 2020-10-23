@@ -1,7 +1,16 @@
-<% @users.each do |user| %>
-  <% if current_user.friends.include?(user) || current_user == user %>
-    <%= user.name %><br>
-  <% else %>
-    <%= user.name %> | <%= link_to 'Add friend', friendships_path(:friend_id => user), method: :post %><br>
-  <% end %>
-<% end %>
+<div class="jumbotron bg-white">
+  <h1 class="display-4 mb-4">Find Friends</h1>
+    <% @users.each do |user| %>
+      <% if !current_user.friends.include?(user) && user != current_user %>
+      <div class="card mb-1">
+        <div class="card-body">
+          <div class="card-text">
+            <%= image_tag 'odin-logo.svg', height:'40', width:'40', class:"mr-1" %>
+            <%= link_to user.name, user, class:"text-decoration-none text-reset" %>
+            <%= link_to 'Add friend', friendships_path(:friend_id => user), method: :post, class:"btn btn-outline-primary float-right" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+</div>

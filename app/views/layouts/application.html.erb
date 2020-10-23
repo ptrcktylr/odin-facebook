@@ -17,20 +17,21 @@
     </head>
 
   <body>
-    <%= render '/layouts/header' %>
-    <% if flash[:notice] %>
-      <div class="alert alert-primary" role="alert">
-        <p class="notice mb-0"><%= notice %></p>
-      </div>
-    <% end %>
+    <main role="main" class="container">
+      <%= render '/layouts/header' %>
+      <% if flash[:notice] %>
+        <div class="alert alert-primary w-75 mx-auto" role="alert">
+          <p class="notice mb-0"><%= notice %></p>
+        </div>
+      <% end %>
 
-    <% if flash[:alert] %>
-      <div class="alert alert-danger" role="alert">
-        <p class="alert mb-0"><%= notice %></p>
-      </div>
-    <% end %>
-
-    <%= yield %>
-
+      <% if flash[:alert] %>
+        <div class="alert alert-danger w-75 mx-auto" role="alert">
+          <p class="alert mb-0"><%= alert %></p>
+        </div>
+      <% end %>
+      
+      <%= yield %>
+    </main>
   </body>
 </html>
