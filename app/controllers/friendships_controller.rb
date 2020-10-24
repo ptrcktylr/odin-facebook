@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  # current user id, friend id that i'm requesting
+  before_action :authenticate_user!
   before_action :set_user, only: [:index]
   
 

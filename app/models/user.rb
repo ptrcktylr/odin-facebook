@@ -47,4 +47,15 @@ class User < ApplicationRecord
   # - POSTS
   has_many :posts, class_name: "Post", foreign_key: "author_id", dependent: :destroy
   
+  # - LIKES
+  has_many :likes, class_name: "Like", foreign_key: "user_id", dependent: :destroy
+  has_many :liked_posts, through: :likes, source: 'post'
+
+  def unlike(post)
+    likes.find_by(post: post)&.destroy
+  end
+
+  def like(post)
+    likes.create(post: post)
+  end
 end

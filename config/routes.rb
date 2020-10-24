@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update] do
     get '/friends', to: 'friendships#index'
   end
-  resources :posts
+
+  resources :posts do
+    post 'like', to: 'likes#create'
+    delete 'like', to: 'likes#destroy'
+  end
+
   resources :friendships
 
   root to: 'static_pages#home'

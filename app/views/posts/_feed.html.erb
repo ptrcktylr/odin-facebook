@@ -23,7 +23,12 @@
           <%= time_ago_in_words(post.created_at) + " ago" %> by <%= link_to post.author.name, post.author, class:'text-decoration-none text-reset' %>
         </div>
 
-        <%= link_to '0 Likes', '#', class: "btn btn-primary mr-1" %>
+        <% unless current_user.liked_posts.include?(post) %>
+          <%= link_to likes(post), post_like_path(post), method: :post, class:"btn btn-primary mr-1" %>
+        <% else %>
+          <%= link_to likes(post), post_like_path(post), method: :delete, class:"btn btn-outline-primary" %>
+        <% end %>
+        
         <%= link_to 'Comment', '#', class: "btn btn-secondary" %>
       </div>
     </div>

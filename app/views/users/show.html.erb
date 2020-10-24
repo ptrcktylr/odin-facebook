@@ -12,7 +12,7 @@
     <% end %>
   </p>
 
-  <%= link_to @user.friendships.select{|fr| fr.mutual? }.count.to_s + ' Friends', user_friends_path(@user), class:"btn btn-secondary mr-1" %>
+  <%= link_to pluralize(@user.friendships.select{|fr| fr.mutual? }.count, 'Friend'), user_friends_path(@user), class:"btn btn-secondary mr-1" %>
 
   <% if @user == current_user %>
     <%= link_to 'Edit Profile', edit_user_path, class:"btn btn-secondary" %>
@@ -20,9 +20,10 @@
     <%= link_to 'Send Friend Request', friendships_path(:friend_id => @user), method: :post, class:"btn btn-secondary" %>
   <% end %>
 </div>
+
 <div class="jumbotron bg-white pt-0">
   <h1 class="display-4">Posts</h1>
-  <% @user.posts.each do |post| %>
+  <% @user.posts.reverse_each do |post| %>
     <div class="card mb-4">
         <div class="card-body">
 
@@ -40,7 +41,12 @@
             <%= time_ago_in_words(post.created_at) + " ago" %> by <%= link_to post.author.name, post.author, class:'text-decoration-none text-reset' %>
           </div>
 
-          <%= link_to '0 Likes', '#', class: "btn btn-primary mr-1" %>
+          <% unless current_user.liked_posts.include?(post) %>
+            <%= link_to likes(post), post_like_path(post), method: :post, class:"btn btn-primary mr-1" %>
+          <% else %>
+            <%= link_to likes(post), post_like_path(post), method: :delete, class:"btn btn-outline-primary" %>
+          <% end %>
+
           <%= link_to 'Comment', '#', class: "btn btn-secondary" %>
         </div>
       </div>
