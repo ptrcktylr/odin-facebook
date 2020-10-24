@@ -9,12 +9,6 @@
     <div class="card mb-2 mt-2">
       <div class="card-body">
 
-        <div class="float-right">
-          <%= link_to post do %>
-            <%= fa_icon 'link' %>
-          <% end %>
-        </div>
-
         <%# Post Content %>
         <div class="card-text">
           <%= post.content %>
@@ -39,6 +33,11 @@
         <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#post-<%= post.id %>-new-comment" aria-expanded="false" aria-controls="post-<%= post.id %>-new-comment">
           Comment
         </button>
+
+        <%# post direct link %>
+        <%= link_to post, class:"ml-2" do %>
+          <%= fa_icon 'link' %>
+        <% end %>
 
         <%# comment form %>
         <div class="card collapse" id="post-<%= post.id %>-new-comment">

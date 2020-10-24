@@ -27,12 +27,6 @@
     <div class="card mb-2 mt-2">
       <div class="card-body">
 
-        <div class="float-right">
-          <%= link_to post do %>
-            <%= fa_icon 'link' %>
-          <% end %>
-        </div>
-
         <%# Post Content %>
         <div class="card-text">
           <%= post.content %>
@@ -57,6 +51,11 @@
           Comment
         </button>
 
+        <%# post direct link %>
+        <%= link_to post, class:"ml-2" do %>
+          <%= fa_icon 'link' %>
+        <% end %>
+
         <%# comment form %>
         <div class="card collapse" id="post-<%= post.id %>-new-comment">
           <%= form_with(model: [post, post.comments.build], local: true, class: 'form-group comment_form m-3 p-0') do |f| %>
@@ -78,7 +77,9 @@
         <div class="card comment mb-2 ml-auto">
           <div class="card-body">
             <%# comment text content %>
-            <%= comment.content %>
+            <div class="card-text">
+              <%= comment.content %>
+            </div>
 
             <%# comment author & time %>
             <div class="card-subtitle text-muted float-right pt-2">
