@@ -75,7 +75,7 @@
     <%# post's comments %>
     <% post.comments.reverse_each do |comment| %>
       <% if comment.persisted? %>
-        <div class="card comment w-75 mb-2 ml-auto">
+        <div class="card comment mb-2 ml-auto">
           <div class="card-body">
             <%# comment text content %>
             <%= comment.content %>
