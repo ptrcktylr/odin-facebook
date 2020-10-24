@@ -58,4 +58,11 @@ class User < ApplicationRecord
   def like(post)
     likes.create(post: post)
   end
+
+  # - COMMENTS
+  has_many :comments, class_name: "Comment", foreign_key: 'author_id', dependent: :destroy
+
+  def comment(post, content)
+    comments.create(post: post, content: content)
+  end
 end

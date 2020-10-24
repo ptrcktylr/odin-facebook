@@ -6,31 +6,80 @@
 <div class="jumbotron bg-white pt-0">
   <h1 class="display-4">Feed</h1>
   <% @posts.each do |post| %>
-    <div class="card mb-4">
+    <div class="card mb-2 mt-2">
       <div class="card-body">
 
         <div class="float-right">
           <%= link_to post do %>
-            <%= fa_icon 'external-link' %>
+            <%= fa_icon 'link' %>
           <% end %>
         </div>
 
+        <%# Post Content %>
         <div class="card-text">
           <%= post.content %>
         </div>
 
+        <%# Time Posted & Author %>
         <div class="card-subtitle text-muted d-inline float-right pt-2">
           <%= time_ago_in_words(post.created_at) + " ago" %> by <%= link_to post.author.name, post.author, class:'text-decoration-none text-reset' %>
+          <%# post author avatar %>
+          <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
         </div>
 
+        <%# Like Button %>
         <% unless current_user.liked_posts.include?(post) %>
-          <%= link_to likes(post), post_like_path(post), method: :post, class:"btn btn-primary mr-1" %>
+          <%= link_to likes(post), post_like_path(post), method: :post, class:"btn btn-primary btn-sm mr-1" %>
         <% else %>
-          <%= link_to likes(post), post_like_path(post), method: :delete, class:"btn btn-outline-primary" %>
+          <%= link_to likes(post), post_like_path(post), method: :delete, class:"btn btn-outline-primary btn-sm mr-1" %>
         <% end %>
-        
-        <%= link_to 'Comment', '#', class: "btn btn-secondary" %>
+
+
+        <%# comment button %>
+        <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#post-<%= post.id %>-new-comment" aria-expanded="false" aria-controls="post-<%= post.id %>-new-comment">
+          Comment
+        </button>
+
+        <%# comment form %>
+        <div class="card collapse" id="post-<%= post.id %>-new-comment">
+          <%= form_with(model: [post, post.comments.build], local: true, class: 'form-group comment_form m-3 p-0') do |f| %>
+            <%= f.label :content, 'Comment' %>
+            <%= f.text_area :content, class: 'form-control my-1' %>
+
+            <div class="d-flex justify-content-end">
+              <%= f.submit 'Post', class: 'btn btn-primary my-2' %>
+            </div>
+          <% end %>
+        </div>     
       </div>
     </div>
+
+    <%# post's comments %>
+    <% post.comments.each do |comment| %>
+      <% if comment.persisted? %>
+        <div class="card comment w-75 mb-2 ml-auto">
+          <div class="card-body">
+            <%# comment text content %>
+            <%= comment.content %>
+
+            <%# comment author & time %>
+            <div class="card-subtitle text-muted float-right pt-2">
+              <%= time_ago_in_words(comment.created_at) + " ago" %> by <%= link_to comment.author.name, comment.author, class:'text-decoration-none text-reset' %>
+
+              <%# comment author avatar %>
+              <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
+
+              <%# comment delete button %>
+              <p>
+              <% if comment.author == current_user %>
+                <%= link_to 'delete', post_comment_path(comment.post, comment), method: :delete, class: 'card-link text-danger float-right pt-1', data: { confirm: 'Are you sure?' } %>
+              <% end %>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
