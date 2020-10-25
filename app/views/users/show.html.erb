@@ -1,6 +1,10 @@
 <div class="jumbotron text-center">
   <%# profile picture %>
-  <%= image_tag 'odin-logo.svg', width: '200', height: '200', class: "mb-3 round-avatar"%>
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar.variant(resize_to_fill: [200, 200], gravity: "center"), class: 'mb-3 round-avatar' %>
+  <% else %>
+    <%= image_tag 'odin-logo.svg', width: '200', height: '200', class: "mb-3 round-avatar"%>
+  <% end %>
   <%# name & summary %>
   <h1 class="display-4"><%= @user.name %></h1>
   <hr>
@@ -35,8 +39,12 @@
         <%# Time Posted & Author %>
         <div class="card-subtitle text-muted d-inline float-right pt-2">
           <%= time_ago_in_words(post.created_at) + " ago" %> by <%= link_to post.author.name, post.author, class:'text-decoration-none text-reset' %>
-          <%# comment author avatar %>
-          <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
+          <%# post author avatar %>
+          <% if post.author.avatar.attached? %>
+            <%= image_tag post.author.avatar.variant(resize_to_fill: [30, 30], gravity: "center"), class: 'round-avatar' %>
+          <% else %>
+            <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
+          <% end %>
         </div>
         
         <%# Like Button %>
@@ -86,7 +94,11 @@
               <%= time_ago_in_words(comment.created_at) + " ago" %> by <%= link_to comment.author.name, comment.author, class:'text-decoration-none text-reset' %>
 
               <%# comment author avatar %>
-              <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
+              <% if comment.author.avatar.attached? %>
+                <%= image_tag comment.author.avatar.variant(resize_to_fill: [30, 30], gravity: "center"), class: 'round-avatar' %>
+              <% else %>
+                <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
+              <% end %>
 
               <%# comment delete button %>
               <p>
