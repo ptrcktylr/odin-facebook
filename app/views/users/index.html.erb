@@ -7,7 +7,7 @@
           <div class="card-text">
             <%# user avatar %>
             <% if user.avatar.attached? %>
-              <%= image_tag user.avatar, class:"mr-1 round-avatar" %>
+              <%= image_tag user.avatar.variant(resize_to_fill: [40, 40], gravity: "center"), class:"mr-1 round-avatar" %>
             <% else %>
               <%= image_tag 'odin-logo.svg', height:'40', width:'40', class:"mr-1 round-avatar" %>
             <% end %>
