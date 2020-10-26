@@ -17,7 +17,7 @@
       <% end %>
 
       <%# comment button %>
-      <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#post-<%= @post.id %>-new-comment" aria-expanded="false" aria-controls="post-<%= @post.id %>-new-comment">
+      <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#post-<%= @post.id %>-new-comment" aria-expanded="false" aria-controls="post-<%= @post.id %>-new-comment">
         Comment
       </button>
 
@@ -32,7 +32,6 @@
             </div>
           <% end %>
         </div>
-      <%# comments %>
       
 
       <% if @post.author == current_user %>
@@ -44,7 +43,7 @@
   <%# post's comments %>
   <% @post.comments.reverse_each do |comment| %>
     <% if comment.persisted? %>
-      <div class="card comment mb-2 ml-auto">
+      <div class="card comment mb-2 mt-2 ml-auto">
         <div class="card-body">
           <%# comment text content %>
           <div class="card-text">
@@ -56,10 +55,10 @@
             <%= time_ago_in_words(comment.created_at) + " ago" %> by <%= link_to comment.author.name, comment.author, class:'text-decoration-none text-reset' %>
 
             <%# comment author avatar %>
-            <% if comment.author.avatar.attached? %>
+            <% if comment.author.avatar.attached? && comment.author.avatar.representable? %>
               <%= image_tag comment.author.avatar.variant(resize_to_fill: [30, 30], gravity: "center"), class: 'round-avatar' %>
             <% else %>
-              <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
+              <%= image_tag 'odin-logo.svg', class: "round-avatar", height: "30", width: "30" %>
             <% end %>
 
             <%# comment delete button %>
