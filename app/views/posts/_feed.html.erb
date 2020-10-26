@@ -73,7 +73,7 @@
               <% if comment.author.avatar.attached? %>
                 <%= image_tag comment.author.avatar.variant(resize_to_fill: [30, 30], gravity: "center"), class: 'round-avatar' %>
               <% else %>
-                <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
+                <%= image_tag 'odin-logo.svg', class: "round-avatar", height: "30", width: "30" %>
               <% end %>
 
               <%# comment delete button %>
