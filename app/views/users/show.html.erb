@@ -1,6 +1,6 @@
 <div class="jumbotron text-center">
   <%# profile picture %>
-  <% if @user.avatar.attached? %>
+  <% if @user.avatar.attached? && @user.avatar.representable? %>
     <%= image_tag @user.avatar.variant(resize_to_fill: [200, 200], gravity: "center"), class: 'mb-3 round-avatar' %>
   <% else %>
     <%= image_tag 'odin-logo.svg', width: '200', height: '200', class: "mb-3 round-avatar"%>
@@ -22,6 +22,15 @@
     <%= link_to 'Edit Profile', edit_user_path, class:"btn btn-secondary" %>
   <% elsif !current_user.friends.include?(@user) %>
     <%= link_to 'Send Friend Request', friendships_path(:friend_id => @user), method: :post, class:"btn btn-secondary" %>
+  <% end %>
+
+  <% if @user == current_user && @user.avatar.attatched? %>
+    <% link_to 'Remove Avatar', delete_image_attachment_url(image_id: @user.avatar.id),
+                                                            method: :delete, 
+                                                            data: {confirm: "Are you sure you want to delete your avatar?" }, 
+                                                            class: "remove-upload" 
+    %>
+    
   <% end %>
 </div>
 

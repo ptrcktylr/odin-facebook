@@ -67,13 +67,7 @@ class User < ApplicationRecord
   end
 
   # - AVATAR
-  has_one_attached :avatar
-  validate :check_image_type
-
-  private 
-  def check_image_type
-    if avatar.attached? && !avatar.content_type.in?(%w(image/jpeg image/png image/jpg))
-      errors.add(:avatar, 'must be a JPEG or PNG!')
-    end
-  end
+  has_one_attached :avatar, dependent: :destroy
+  validates :avatar, content_type: [:png, :jpg, :jpeg]
+  
 end

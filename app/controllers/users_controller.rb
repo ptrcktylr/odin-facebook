@@ -22,8 +22,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def remove_avatar
-    # delete attached avatar 
+  def delete_image
+    image = ActiveStorage::Attachment.find(params[:image_id])
+    if current_user == image.record
+      image.purge
+      redirect_back(fallback_location: request.referer)
+    else
+      redirect_to root_url, notice: "Couldn't delete image"
+    end
   end
 
 
