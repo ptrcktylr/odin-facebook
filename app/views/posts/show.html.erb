@@ -2,16 +2,20 @@
 
   <div class="card">
     <div class="card-body">
-      <%= link_to @post.author.name, @post.author, class:"lead text-reset text-decoration-none" %>
-      <div class="card-text mt-3 mb-3">
-        <%= @post.content %>
-      </div>
-
+      <%# post user avatar %>
       <% if @post.author.avatar.attached? && @post.author.avatar.representable? %>
         <%= image_tag @post.author.avatar.variant(resize_to_fill: [100, 100], gravity: "center"), class: 'round-avatar float-right' %>
       <% else %>
         <%= image_tag 'odin-logo.svg', class: "round-avatar float-right", height: "100", width: "100" %>
       <% end %>
+
+      <%# post user name %>
+      <%= link_to @post.author.name, @post.author, class:"lead text-reset text-decoration-none" %>
+
+      <%# post content %>
+      <div class="card-text mt-3 mb-3">
+        <%= @post.content %>
+      </div>
 
       <div class="text-muted time mb-2">
         <%= time_ago_in_words(@post.created_at) + " ago" %>
