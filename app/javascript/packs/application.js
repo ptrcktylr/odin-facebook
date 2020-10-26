@@ -19,3 +19,5 @@ require("channels")
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery.ui.widget
+//= require z.jquery.fileupload
