@@ -7,8 +7,6 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("jquery.ui.widget.js")
-require("z.jquery.fileupload.js")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -22,6 +20,4 @@ require("z.jquery.fileupload.js")
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require jquery.ui.widget
-//= require z.jquery.fileupload
 //= require_tree .
