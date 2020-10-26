@@ -16,11 +16,63 @@
         <%= link_to likes(@post), post_like_path(@post), method: :delete, class:"btn btn-outline-primary" %>
       <% end %>
 
-      <%= link_to 'Comment', '#', class:"btn btn-primary" %>
+      <%# comment button %>
+      <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#post-<%= post.id %>-new-comment" aria-expanded="false" aria-controls="post-<%= post.id %>-new-comment">
+        Comment
+      </button>
+
+      <%# comment form %>
+        <div class="card collapse" id="post-<%= @post.id %>-new-comment">
+          <%= form_with(model: [@post, @post.comments.build], local: true, class: 'form-group comment_form m-3 p-0') do |f| %>
+            <%= f.label :content, 'Comment' %>
+            <%= f.text_area :content, class: 'form-control my-1' %>
+
+            <div class="d-flex justify-content-end">
+              <%= f.submit 'Post', class: 'btn btn-primary my-2' %>
+            </div>
+          <% end %>
+        </div>
+      <%# comments %>
       
+
       <% if @post.author == current_user %>
         <%= link_to 'Delete Post', @post, method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, class:"btn btn-danger float-right"%>
       <% end %>
     </div>
   </div>
+
+  <%# post's comments %>
+  <% @post.comments.reverse_each do |comment| %>
+    <% if comment.persisted? %>
+      <div class="card comment mb-2 ml-auto">
+        <div class="card-body">
+          <%# comment text content %>
+          <div class="card-text">
+            <%= comment.content %>
+          </div>
+
+          <%# comment author & time %>
+          <div class="card-subtitle text-muted float-right pt-2">
+            <%= time_ago_in_words(comment.created_at) + " ago" %> by <%= link_to comment.author.name, comment.author, class:'text-decoration-none text-reset' %>
+
+            <%# comment author avatar %>
+            <% if comment.author.avatar.attached? %>
+              <%= image_tag comment.author.avatar.variant(resize_to_fill: [30, 30], gravity: "center"), class: 'round-avatar' %>
+            <% else %>
+              <%= image_tag 'odin-logo', class: "round-avatar", height: "30", width: "30" %>
+            <% end %>
+
+            <%# comment delete button %>
+            <p>
+            <% if comment.author == current_user %>
+              <%= link_to 'delete', post_comment_path(comment.post, comment), method: :delete, class: 'card-link text-danger float-right pt-1', data: { confirm: 'Are you sure?' } %>
+            <% end %>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
 </div>
