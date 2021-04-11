@@ -12,8 +12,17 @@ Deployed site at https://the-odin-book.herokuapp.com/
   - See friend's posts in their feed
   - Like posts
   - Login with their Facebook account (omniauth)
+  - Reset their password with email (devise)
 
-[comment]: <> (Add screenshots for features)
+## Preview
+![main](/preview_images/main.png)
+![signup](/preview_images/signup.png)
+![feed](/preview_images/feed.png)
+![profile](/preview_images/profile.png)
+![friends](/preview_images/friends.png)
+![notifications](/preview_images/notifications.png)
+![requests](/preview_images/requests.png)
+
 
 ## Potential future improvements
 - Add email verification for accounts
