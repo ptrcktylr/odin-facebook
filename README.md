@@ -1,4 +1,6 @@
-<div align="center">![logo](/preview_images/odinlogo.svg)</div>
+<div align="center">
+  <img src='/preview_images/odinlogo.svg'></img>
+</div>
 
 # Odinbook
 
