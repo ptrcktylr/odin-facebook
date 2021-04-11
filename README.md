@@ -1,4 +1,5 @@
-![logo](/preview_images/odinlogo.svg)
+<div align="center">![logo](/preview_images/odinlogo.svg)</div>
+
 # Odinbook
 
 The [final project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project) in the [Ruby On Rails section](https://www.theodinproject.com/courses/ruby-on-rails) in [The Odin Project](https://www.theodinproject.com/).
