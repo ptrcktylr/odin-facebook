@@ -6,11 +6,12 @@ Deployed site at https://the-odin-book.herokuapp.com/
 
 ## Features
 - Users can
-  - post and comment on posts
-  - send and receive friend requests
-  - set their own profile picture
+  - Post and comment on posts
+  - Send and receive friend requests
+  - Set their own profile picture (uses AWS)
   - See friend's posts in their feed
-  - like posts
+  - Like posts
+  - Login with their Facebook account (omniauth)
 
 [comment]: <> (Add screenshots for features)
 
