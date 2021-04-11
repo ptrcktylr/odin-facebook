@@ -1,3 +1,4 @@
+![logo](/preview_images/odinlogo.svg)
 # Odinbook
 
 The [final project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project) in the [Ruby On Rails section](https://www.theodinproject.com/courses/ruby-on-rails) in [The Odin Project](https://www.theodinproject.com/).
